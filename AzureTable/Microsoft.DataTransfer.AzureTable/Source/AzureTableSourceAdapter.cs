@@ -92,8 +92,9 @@ namespace Microsoft.DataTransfer.AzureTable.Source
             if (configuration.InternalFields == AzureTableInternalFields.All)
             {
                 entity.Properties[PartitionKeyFieldName] = new EntityProperty(entity.PartitionKey);
-                entity.Properties[TimestampFieldName] = new EntityProperty(entity.Timestamp);
-                entity.Properties[ETagFieldName] = new EntityProperty(entity.ETag);
+                // Prevent adding extra columns when migrating data from src to target
+                //entity.Properties[TimestampFieldName] = new EntityProperty(entity.Timestamp);
+                //entity.Properties[ETagFieldName] = new EntityProperty(entity.ETag);
             }
 
             entity.Properties[RowKeyFieldName] = new EntityProperty(entity.RowKey);
